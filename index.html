@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to Bright Haven</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightHaven Children's Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #ffffff; }
+        header { background-color: #001f3f; color: #fff; padding: 20px; text-align: center; }
+        nav a { margin: 0 15px; color: #FFD700; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        .hero { background-color: #e1c16d; padding: 50px; text-align: center; }
+        .content-section { padding: 20px; }
+        footer { background-color: #001f3f; color: #fff; text-align: center; padding: 10px; position: relative; bottom: 0; width: 100%; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Bright Haven Services</h1>
-    <p>This is your starting point.</p>
+    <header>
+        <h1>BrightHaven Children's Services</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#residential-care">Residential Care</a>
+            <a href="#placements">Placements</a>
+            <a href="#safeguarding">Safeguarding</a>
+            <a href="#careers">Careers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <div class="hero">
+        <h2>Welcome to BrightHaven</h2>
+        <p>Your safe space for children and families.</p>
+    </div>
+    <section id="about" class="content-section">
+        <h2>About Us</h2>
+        <p>BrightHaven Children's Services provides residential care, placements, and support.</p>
+    </section>
+    <section id="residential-care" class="content-section">
+        <h2>Residential Care</h2>
+        <p>Details about our residential care services.</p>
+    </section>
+    <section id="placements" class="content-section">
+        <h2>Placements</h2>
+        <p>Contact information for placements.</p>
+    </section>
+    <section id="safeguarding" class="content-section">
+        <h2>Safeguarding</h2>
+        <p>Our commitments to safeguarding.</p>
+    </section>
+    <section id="careers" class="content-section">
+        <h2>Careers</h2>
+        <p>Careers within BrightHaven coming soon.</p>
+    </section>
+    <section id="statement" class="content-section">
+        <h2>Statement of Purpose</h2>
+        <p>Coming soon!</p>
+    </section>
+    <section id="contact" class="content-section">
+        <h2>Contact Us</h2>
+        <p>Email: contact@brighthaven.org</p>
+    </section>
+    <footer>
+        <p>&copy; 2026 BrightHaven Children's Services. All rights reserved.</p>
+        <p>Current Year: <script>document.write(new Date().getFullYear());</script></p>
+    </footer>
 </body>
 </html>
