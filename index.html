@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BrightHaven Children's Services</title>
   <meta name="description" content="BrightHaven Children's Services provides safe, nurturing, and child-centred residential care." />
+  <script>
+    // Force HTTPS
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+    }
+  </script>
   <style>
     :root {
       --navy: #173a57;
@@ -513,6 +519,135 @@
         max-width: none;
       }
     }
+    /* ── Referral Modal ── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,.55);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 36px;
+      width: 100%;
+      max-width: 540px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 70px rgba(15,23,42,.22);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1;
+      padding: 4px 8px;
+    }
+
+    .modal-close:hover { color: var(--navy); }
+
+    .modal h2 {
+      margin: 0 0 6px;
+      color: var(--navy);
+      font-size: 26px;
+    }
+
+    .modal > p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      border: 1px solid rgba(15,23,42,.16);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--soft);
+      width: 100%;
+      transition: border-color .2s;
+      outline: none;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--navy);
+      background: #fff;
+    }
+
+    .form-field textarea { resize: vertical; min-height: 90px; }
+
+    .form-notice {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0 0 20px;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 24px 0 8px;
+      color: var(--navy);
+    }
+
+    .form-success .tick {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .form-success h3 { margin: 0 0 8px; }
+    .form-success p  { color: var(--muted); margin: 0; }
+
+    @media (max-width: 540px) {
+      .modal { padding: 24px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -550,7 +685,7 @@
           <h2>Supporting children with care, stability, and opportunity.</h2>
           <p class="lead">BrightHaven Children's Services is being developed to provide stable, compassionate residential care where children can feel secure, supported, and able to make positive progress.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#referrals">Make a Referral</a>
+            <button class="btn btn-primary" onclick="openReferralModal()">Make a Referral</button>
             <a class="btn btn-outline" href="#about">Learn More</a>
           </div>
         </div>
@@ -638,7 +773,7 @@
         </div>
         <div class="referral-card">
           <h3>Referral enquiries</h3>
-          <p>To discuss a potential referral, contact BrightHaven using the details below.</p>
+          <p>To discuss a potential referral, contact BrightHaven using the details below or submit an enquiry form.</p>
           <div class="info-row">
             <div class="info-item">
               <strong>Email</strong>
@@ -652,6 +787,9 @@
               <strong>Response</strong>
               Enquiries can be reviewed and acknowledged as services progress
             </div>
+          </div>
+          <div class="actions" style="margin-top:20px;">
+            <button class="btn btn-accent" onclick="openReferralModal()">Send Referral Enquiry</button>
           </div>
         </div>
       </div>
@@ -691,5 +829,143 @@
       </div>
     </div>
   </footer>
+  <!-- ============================================================
+       REFERRAL MODAL
+       Powered by Formspree (https://formspree.io).
+       Steps to activate email delivery:
+         1. Sign up free at https://formspree.io
+         2. Create a new form → copy the form ID (looks like "xbjvwxyz")
+         3. Replace "YOUR_FORM_ID" below with your actual form ID
+       ============================================================ -->
+  <div class="modal-backdrop" id="referralBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" onclick="closeReferralModal()" aria-label="Close">&times;</button>
+
+      <div id="referralFormWrap">
+        <h2 id="modalTitle">Referral Enquiry</h2>
+        <p>Please provide the details below and we will be in touch. All enquiries are treated confidentially.</p>
+
+        <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
+        <form id="referralForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleReferralSubmit(event)">
+          <!-- Hidden fields for Formspree configuration -->
+          <input type="hidden" name="_subject" value="New Referral Enquiry – BrightHaven Services" />
+          <input type="hidden" name="_replyto" value="" id="replyToField" />
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="rf-name">Your Name *</label>
+                <input type="text" id="rf-name" name="name" required placeholder="Full name" />
+              </div>
+              <div class="form-field">
+                <label for="rf-role">Your Role *</label>
+                <input type="text" id="rf-role" name="role" required placeholder="e.g. Social Worker" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="rf-org">Organisation / Local Authority *</label>
+                <input type="text" id="rf-org" name="organisation" required placeholder="Organisation name" />
+              </div>
+              <div class="form-field">
+                <label for="rf-phone">Phone Number</label>
+                <input type="tel" id="rf-phone" name="phone" placeholder="Best contact number" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="rf-email">Your Email *</label>
+              <input type="email" id="rf-email" name="email" required placeholder="your@email.com" oninput="document.getElementById('replyToField').value=this.value" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="rf-age">Child's Age (approx)</label>
+                <input type="text" id="rf-age" name="child_age" placeholder="e.g. 13" />
+              </div>
+              <div class="form-field">
+                <label for="rf-urgency">Urgency</label>
+                <select id="rf-urgency" name="urgency">
+                  <option value="">Please select</option>
+                  <option>Routine – within weeks</option>
+                  <option>Soon – within days</option>
+                  <option>Urgent – within 24–48 hrs</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="rf-details">Brief Summary of Needs *</label>
+              <textarea id="rf-details" name="details" required placeholder="Please provide a brief overview of the child's needs and the reason for referral…"></textarea>
+            </div>
+          </div>
+
+          <p class="form-notice">Fields marked * are required. Information shared here is used solely to respond to your enquiry.</p>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">Submit Enquiry</button>
+        </form>
+      </div>
+
+      <div class="form-success" id="referralSuccess">
+        <div class="tick">✅</div>
+        <h3>Enquiry received</h3>
+        <p>Thank you — we will review your enquiry and be in touch shortly.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openReferralModal() {
+      document.getElementById('referralBackdrop').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeReferralModal() {
+      document.getElementById('referralBackdrop').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close on backdrop click
+    document.getElementById('referralBackdrop').addEventListener('click', function(e) {
+      if (e.target === this) closeReferralModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeReferralModal();
+    });
+
+    function handleReferralSubmit(e) {
+      e.preventDefault();
+      var form = document.getElementById('referralForm');
+      var data = new FormData(form);
+
+      // Warn if form ID has not been configured yet
+      if (form.action.includes('YOUR_FORM_ID')) {
+        alert('The referral form is not yet connected to an email service.\n\nPlease follow the setup steps in the HTML comments to activate email delivery via Formspree.');
+        return;
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(response) {
+        if (response.ok) {
+          document.getElementById('referralFormWrap').style.display = 'none';
+          document.getElementById('referralSuccess').style.display = 'block';
+        } else {
+          return response.json().then(function(data) {
+            throw new Error(data.error || 'Submission failed');
+          });
+        }
+      })
+      .catch(function(err) {
+        alert('Sorry, there was a problem submitting your enquiry. Please email us directly at info@brighthavenservices.co.uk\n\nError: ' + err.message);
+      });
+    }
+  </script>
 </body>
 </html>
