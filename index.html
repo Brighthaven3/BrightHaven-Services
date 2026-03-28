@@ -831,11 +831,12 @@
   </footer>
   <!-- ============================================================
        REFERRAL MODAL
-       Powered by Formspree (https://formspree.io).
-       Steps to activate email delivery:
-         1. Sign up free at https://formspree.io
-         2. Create a new form → copy the form ID (looks like "xbjvwxyz")
-         3. Replace "YOUR_FORM_ID" below with your actual form ID
+       Powered by FormSubmit.co — no account or signup needed.
+       How it works:
+         1. When the first enquiry is submitted, FormSubmit.co will send
+            a one-time confirmation email to info@brighthavenservices.co.uk
+         2. Click the link in that email to activate delivery
+         3. All future enquiries will arrive in your inbox automatically
        ============================================================ -->
   <div class="modal-backdrop" id="referralBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
@@ -845,11 +846,11 @@
         <h2 id="modalTitle">Referral Enquiry</h2>
         <p>Please provide the details below and we will be in touch. All enquiries are treated confidentially.</p>
 
-        <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
-        <form id="referralForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleReferralSubmit(event)">
-          <!-- Hidden fields for Formspree configuration -->
+        <form id="referralForm" action="https://formsubmit.co/ajax/info@brighthavenservices.co.uk" method="POST" onsubmit="handleReferralSubmit(event)">
+          <!-- FormSubmit configuration -->
           <input type="hidden" name="_subject" value="New Referral Enquiry – BrightHaven Services" />
-          <input type="hidden" name="_replyto" value="" id="replyToField" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
 
           <div class="form-group">
             <div class="form-row">
@@ -876,7 +877,7 @@
 
             <div class="form-field">
               <label for="rf-email">Your Email *</label>
-              <input type="email" id="rf-email" name="email" required placeholder="your@email.com" oninput="document.getElementById('replyToField').value=this.value" />
+              <input type="email" id="rf-email" name="email" required placeholder="your@email.com" />
             </div>
 
             <div class="form-row">
@@ -941,12 +942,6 @@
       var form = document.getElementById('referralForm');
       var data = new FormData(form);
 
-      // Warn if form ID has not been configured yet
-      if (form.action.includes('YOUR_FORM_ID')) {
-        alert('The referral form is not yet connected to an email service.\n\nPlease follow the setup steps in the HTML comments to activate email delivery via Formspree.');
-        return;
-      }
-
       fetch(form.action, {
         method: 'POST',
         body: data,
@@ -958,7 +953,7 @@
           document.getElementById('referralSuccess').style.display = 'block';
         } else {
           return response.json().then(function(data) {
-            throw new Error(data.error || 'Submission failed');
+            throw new Error(data.message || 'Submission failed');
           });
         }
       })
