@@ -41,7 +41,7 @@
     .topbar {
       background: var(--navy);
       color: #fff;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .topbar .container {
@@ -49,13 +49,15 @@
       justify-content: space-between;
       gap: 16px;
       align-items: center;
-      padding: 10px 0;
+      padding: 8px 0;
       flex-wrap: wrap;
     }
 
     .header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 50;
       backdrop-filter: blur(10px);
       background: rgba(255,255,255,0.92);
@@ -67,43 +69,43 @@
       justify-content: space-between;
       align-items: center;
       gap: 24px;
-      padding: 12px 0;
+      padding: 10px 0;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       min-width: 0;
     }
 
-    .brand img { height: 56px; width: auto; }
+    .brand img { height: 52px; width: auto; }
 
     .brand-copy h1 {
       margin: 0;
       color: var(--navy);
-      font-size: 24px;
+      font-size: 20px;
       line-height: 1;
     }
 
     .brand-copy p {
-      margin: 4px 0 0;
+      margin: 2px 0 0;
       color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 0.26em;
+      font-size: 10px;
+      letter-spacing: 0.23em;
       text-transform: uppercase;
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
     nav a {
       color: #334155;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
     }
 
@@ -112,9 +114,9 @@
       align-items: center;
       justify-content: center;
       border-radius: 999px;
-      padding: 12px 20px;
+      padding: 10px 16px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
       border: none;
       cursor: pointer;
       transition: transform .2s ease, opacity .2s ease, background .2s ease;
@@ -125,18 +127,26 @@
     .btn-accent { background: var(--gold); color: var(--navy); }
     .btn-outline { background: #fff; color: var(--navy); border: 1px solid rgba(23,58,87,.16); }
 
+    body {
+      padding-top: 62px;
+    }
+
     .hero {
       position: relative;
       overflow: hidden;
       background: linear-gradient(135deg, #ffffff 0%, #f8f6f1 45%, #eef2f5 100%);
-      padding: 55px 0 65px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 35px;
+      gap: 30px;
       align-items: center;
+      width: 100%;
     }
 
     .eyebrow {
@@ -145,106 +155,107 @@
       border: 1px solid rgba(215,162,61,.30);
       color: var(--navy);
       border-radius: 999px;
-      padding: 9px 15px;
-      font-size: 13px;
+      padding: 8px 14px;
+      font-size: 12px;
       font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .hero h2 {
       margin: 0;
       color: var(--navy);
-      font-size: clamp(32px, 5.5vw, 52px);
-      line-height: 1.08;
-      letter-spacing: -0.025em;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
 
     .hero p.lead {
-      margin: 16px 0 0;
-      max-width: 680px;
-      font-size: 16px;
+      margin: 12px 0 0;
+      max-width: 670px;
+      font-size: 15px;
       color: var(--muted);
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 10px;
+      margin-top: 16px;
     }
 
     .hero-media {
       position: relative;
       background: #fff;
-      border-radius: 28px;
-      padding: 16px;
+      border-radius: 24px;
+      padding: 14px;
       box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,.8);
     }
 
     .hero-media img {
       width: 100%;
-      height: 380px;
+      height: 340px;
       object-fit: cover;
-      border-radius: 20px;
+      border-radius: 16px;
     }
 
     .hero-badge {
       position: absolute;
-      left: 28px;
-      bottom: 28px;
+      left: 20px;
+      bottom: 20px;
       background: rgba(255,255,255,.88);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255,255,255,.5);
-      border-radius: 20px;
-      padding: 16px 18px;
-      max-width: 300px;
+      border-radius: 16px;
+      padding: 12px 14px;
+      max-width: 260px;
       box-shadow: 0 12px 30px rgba(0,0,0,.10);
+      font-size: 12px;
     }
 
     .hero-badge strong {
       display: block;
       color: var(--navy);
-      font-size: 15px;
-      margin-bottom: 5px;
+      font-size: 13px;
+      margin-bottom: 3px;
       font-weight: 700;
     }
 
     .hero-badge span {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
     }
 
-    section { padding: 70px 0; }
+    section { padding: 60px 0; }
 
     .section-heading {
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       color: var(--navy);
-      font-size: clamp(28px, 4.5vw, 42px);
-      line-height: 1.12;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.1;
       letter-spacing: -0.02em;
     }
 
     .section-label {
-      margin: 0 0 9px;
+      margin: 0 0 8px;
       color: var(--gold);
       font-weight: 800;
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.27em;
+      letter-spacing: 0.25em;
     }
 
     .section-copy {
       margin: 0;
       color: var(--muted);
-      font-size: 16px;
+      font-size: 15px;
       max-width: 720px;
     }
 
     .about-grid {
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
-      gap: 32px;
+      gap: 28px;
       align-items: center;
     }
 
@@ -258,18 +269,18 @@
     .about-text {
       background: var(--navy);
       color: #fff;
-      padding: 32px;
+      padding: 28px;
     }
 
     .about-text .section-label { color: #e9c46f; }
-    .about-text .section-heading { color: #fff; font-size: 32px; }
-    .about-text p { color: rgba(255,255,255,.85); font-size: 15px; margin: 0; }
+    .about-text .section-heading { color: #fff; font-size: 28px; }
+    .about-text p { color: rgba(255,255,255,.85); font-size: 14px; margin: 0; }
 
     .about-image img {
       border-radius: var(--radius);
       width: 100%;
       height: 100%;
-      min-height: 380px;
+      min-height: 340px;
       object-fit: cover;
       box-shadow: var(--shadow);
     }
@@ -277,55 +288,55 @@
     .values {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 30px;
+      gap: 16px;
+      margin-top: 24px;
     }
 
     .value-card {
       background: #fff;
-      border-radius: 24px;
-      padding: 22px;
+      border-radius: 20px;
+      padding: 20px;
       border: 1px solid rgba(15,23,42,.05);
       box-shadow: 0 8px 24px rgba(15,23,42,.04);
     }
 
     .icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       display: grid;
       place-items: center;
       background: rgba(215,162,61,.15);
       color: var(--navy);
-      font-size: 20px;
-      margin-bottom: 14px;
+      font-size: 18px;
+      margin-bottom: 12px;
     }
 
     .value-card h3, .content-card h3, .careers-card h3, .homes-note h3, .referral-card h3 {
       margin: 0 0 8px;
       color: var(--navy);
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .value-card p, .content-card p, .careers-card p, .homes-note p, .referral-card p, .footer-copy {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .homes-wrap {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      margin-top: 32px;
+      gap: 22px;
+      margin-top: 28px;
       align-items: stretch;
     }
 
     .homes-visual {
       position: relative;
       overflow: hidden;
-      min-height: 380px;
-      border-radius: 28px;
+      min-height: 340px;
+      border-radius: 24px;
       border: 1px solid rgba(15,23,42,.05);
       box-shadow: 0 10px 30px rgba(15,23,42,.05);
       background: #f8fafb;
@@ -345,51 +356,51 @@
       background: rgba(23,58,87,.36);
       display: grid;
       place-items: center;
-      padding: 24px;
+      padding: 20px;
     }
 
     .homes-note {
       background: rgba(255,255,255,.86);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,.35);
-      border-radius: 24px;
-      padding: 28px;
+      border-radius: 20px;
+      padding: 24px;
       text-align: center;
-      max-width: 480px;
+      max-width: 440px;
       box-shadow: 0 18px 40px rgba(15,23,42,.12);
     }
 
     .small-label {
       margin: 0;
       color: var(--gold);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.22em;
     }
 
     .homes-note .coming {
       color: var(--navy);
-      font-size: clamp(26px, 3.5vw, 40px);
+      font-size: clamp(24px, 3vw, 34px);
       line-height: 1.1;
-      margin: 10px 0 10px;
+      margin: 8px 0 8px;
     }
 
     .content-card {
       background: var(--soft);
-      border-radius: 28px;
-      padding: 28px;
+      border-radius: 24px;
+      padding: 24px;
     }
 
     .content-card ul {
-      margin: 14px 0 0;
-      padding-left: 20px;
+      margin: 12px 0 0;
+      padding-left: 18px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .content-card ul li {
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .referrals {
@@ -400,7 +411,7 @@
     .referrals-grid {
       display: grid;
       grid-template-columns: 1fr 0.84fr;
-      gap: 28px;
+      gap: 26px;
       align-items: center;
     }
 
@@ -412,44 +423,44 @@
     .referral-card {
       background: #fff;
       color: var(--text);
-      border-radius: 26px;
-      padding: 26px;
+      border-radius: 24px;
+      padding: 24px;
       box-shadow: 0 22px 50px rgba(0,0,0,.18);
     }
 
     .info-row {
       display: grid;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 11px;
+      margin-top: 14px;
     }
 
     .info-item {
       border: 1px solid rgba(15,23,42,.08);
-      border-radius: 16px;
-      padding: 14px 16px;
+      border-radius: 14px;
+      padding: 12px 14px;
       background: #fff;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .info-item strong {
       display: block;
       color: var(--navy);
-      margin-bottom: 4px;
-      font-size: 12px;
+      margin-bottom: 3px;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: .07em;
+      letter-spacing: .06em;
       font-weight: 700;
     }
 
     .careers-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
+      gap: 20px;
     }
 
     .careers-card {
-      border-radius: 28px;
-      padding: 28px;
+      border-radius: 24px;
+      padding: 24px;
       background: #fff;
       border: 1px solid rgba(15,23,42,.05);
       box-shadow: 0 10px 30px rgba(15,23,42,.05);
@@ -460,39 +471,39 @@
     }
 
     .careers-card ul {
-      margin: 12px 0 0;
-      padding-left: 20px;
+      margin: 10px 0 0;
+      padding-left: 18px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     footer {
       background: #fff;
       border-top: 1px solid var(--line);
-      padding: 28px 0 40px;
+      padding: 20px 0 32px;
     }
 
     .footer-grid {
       display: grid;
       grid-template-columns: 1fr 0.9fr;
-      gap: 28px;
+      gap: 22px;
       align-items: center;
     }
 
     .footer-brand {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .footer-brand img { height: 50px; width: auto; }
+    .footer-brand img { height: 42px; width: auto; }
 
     .footer-meta {
       display: grid;
-      gap: 10px;
+      gap: 8px;
       justify-content: end;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 12px;
     }
 
     .footer-meta strong { color: var(--navy); }
@@ -508,28 +519,33 @@
       .values {
         grid-template-columns: 1fr;
       }
-      .hero-media img { height: 340px; }
+      .hero-media img { height: 280px; }
       .footer-meta { justify-content: start; }
-      section { padding: 50px 0; }
     }
 
     @media (max-width: 640px) {
-      .brand-copy h1 { font-size: 22px; }
-      .brand img { height: 50px; }
-      .hero { padding: 40px 0; }
-      .hero-media img { height: 280px; }
+      .brand-copy h1 { font-size: 16px; }
+      .brand img { height: 40px; }
+      .hero { min-height: auto; padding: 40px 0; }
+      .hero-media img { height: 220px; }
       .about-text,
       .content-card,
       .careers-card,
       .referral-card,
-      .homes-note { padding: 20px; }
+      .homes-note { padding: 16px; }
       .hero-badge {
-        left: 16px;
-        right: 16px;
-        bottom: 16px;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
         max-width: none;
+        padding: 10px 12px;
       }
-      section { padding: 40px 0; }
+      .values {
+        grid-template-columns: 1fr;
+      }
+      .careers-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -671,7 +687,7 @@
               Enquiries can be reviewed and acknowledged as services progress
             </div>
           </div>
-          <a href="referral.html" class="btn btn-primary" style="margin-top: 16px;">Submit Referral Form</a>
+          <a href="referral.html" class="btn btn-primary" style="margin-top: 14px;">Submit Referral Form</a>
         </div>
       </div>
     </section>
@@ -681,14 +697,14 @@
         <article class="careers-card">
           <h3>Careers at BrightHaven</h3>
           <p>As BrightHaven develops, we hope to build a thoughtful and dependable team. Future opportunities will be suited to people who value safeguarding, consistency, and relationship-based care.</p>
-          <div class="actions" style="margin-top:16px;">
+          <div class="actions" style="margin-top:14px;">
             <a class="btn btn-primary" href="contact.html">Register your interest</a>
           </div>
         </article>
         <article class="careers-card soft">
           <h3>Future opportunities</h3>
           <p>BrightHaven is not currently advertising live vacancies. As our service develops, this page will be updated with clear information about available roles, responsibilities, person specifications, and how to apply.</p>
-          <p style="margin-top:12px;">All appointments will be subject to robust safer recruitment procedures and appropriate pre-employment checks, reflecting our commitment to safeguarding and professional standards.</p>
+          <p style="margin-top:10px;">All appointments will be subject to robust safer recruitment procedures and appropriate pre-employment checks, reflecting our commitment to safeguarding and professional standards.</p>
         </article>
       </div>
     </section>
@@ -699,7 +715,7 @@
       <div class="footer-brand">
         <img src="logo.png" alt="BrightHaven logo" />
         <div>
-          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">BrightHaven Children's Services</div>
+          <div style="font-weight:700; color:var(--navy); margin-bottom:6px; font-size: 12px;">BrightHaven Children's Services</div>
           <p class="footer-copy">BrightHaven Children's Services is focused on building thoughtful residential care provision with stability, warmth, and high standards at its core.</p>
         </div>
       </div>
