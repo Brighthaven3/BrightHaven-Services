@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Referral Form - BrightHaven Children's Services</title>
+  <style>
+    :root {
+      --navy: #173a57;
+      --gold: #d7a23d;
+      --bg: #f4f4f4;
+      --text: #1f2937;
+      --muted: #5f6b7a;
+      --card: #ffffff;
+      --soft: #f6f8fa;
+      --line: rgba(23,58,87,0.08);
+      --radius: 28px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 0;
+      flex-wrap: wrap;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img { height: 60px; width: auto; }
+
+    .brand-copy h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .brand-copy p {
+      margin: 6px 0 0;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #334155;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: transform .2s ease, opacity .2s ease, background .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--navy); color: #fff; }
+    .btn-accent { background: var(--gold); color: var(--navy); }
+    .btn-outline { background: #fff; color: var(--navy); border: 1px solid rgba(23,58,87,.16); }
+
+    section { padding: 86px 0; }
+
+    .section-heading {
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+    }
+
+    .section-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 720px;
+    }
+
+    .form-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 720px;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 15px;
+    }
+
+    input, textarea, select {
+      padding: 14px 16px;
+      border: 1px solid rgba(23,58,87,.16);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(23,58,87,.08);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    footer {
+      background: #fff;
+      border-top: 1px solid var(--line);
+      padding: 24px 0 42px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .footer-brand img { height: 52px; width: auto; }
+
+    .footer-meta {
+      display: grid;
+      gap: 10px;
+      justify-content: end;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .footer-meta strong { color: var(--navy); }
+
+    @media (max-width: 980px) {
+      nav { display: none; }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-meta { justify-content: start; }
+    }
+
+    @media (max-width: 640px) {
+      .brand-copy h1 { font-size: 24px; }
+      .brand img { height: 52px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div>Email: <a href="mailto:info@brighthavenservices.co.uk">info@brighthavenservices.co.uk</a></div>
+      <div>United Kingdom</div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="brand" aria-label="BrightHaven Home">
+        <img src="logo.png" alt="BrightHaven Children's Services logo" />
+        <div class="brand-copy">
+          <h1>BrightHaven</h1>
+          <p>Children's Services</p>
+        </div>
+      </a>
+      <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#homes">Our Homes</a>
+        <a href="index.html#referrals">Referrals</a>
+        <a href="index.html#careers">Careers</a>
+        <a href="index.html#contact" class="btn btn-accent">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <p class="section-label">Referral Form</p>
+        <h2 class="section-heading">Submit a referral enquiry</h2>
+        <p class="section-copy">Please complete the form below with details of your referral enquiry. We will review your submission and be in touch as soon as possible.</p>
+
+        <form action="https://formsubmit.co/info@brighthavenservices.co.uk" method="POST" class="form-wrapper" style="margin-top: 36px;">
+          
+          <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+
+          <div class="form-group">
+            <label for="organisation">Organisation/Role *</label>
+            <input type="text" id="organisation" name="organisation" placeholder="e.g. Local Authority, Social Worker, etc." required>
+          </div>
+
+          <div class="form-group">
+            <label for="childName">Child's Name *</label>
+            <input type="text" id="childName" name="childName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="age">Child's Age *</label>
+            <input type="number" id="age" name="age" min="0" max="25" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reason">Reason for Referral *</label>
+            <textarea id="reason" name="reason" placeholder="Please provide details about the referral enquiry..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="additionalInfo">Additional Information</label>
+            <textarea id="additionalInfo" name="additionalInfo" placeholder="Any additional information that may be helpful..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit Referral</button>
+            <a href="index.html" class="btn btn-outline">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="logo.png" alt="BrightHaven logo" />
+        <div>
+          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">BrightHaven Children's Services</div>
+          <p style="margin: 0; color: var(--muted);">BrightHaven Children's Services is focused on building thoughtful residential care provision with stability, warmth, and high standards at its core.</p>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <div><strong>Email:</strong> <a href="mailto:info@brighthavenservices.co.uk">info@brighthavenservices.co.uk</a></div>
+        <div><strong>Website:</strong> brighthavenservices.co.uk</div>
+        <div><strong>Location:</strong> United Kingdom</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hide FormSubmit branding
+    document.addEventListener('DOMContentLoaded', function() {
+      const style = document.createElement('style');
+      style.textContent = '.formsubmit-branding { display: none !important; }';
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>
