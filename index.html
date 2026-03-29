@@ -4,38 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BrightHaven Children's Services</title>
-  <meta name="description" content="BrightHaven Children's Services provides safe, nurturing, and child-centred residential care." />
+  <meta
+    name="description"
+    content="BrightHaven Children's Services is being developed to provide safe, stable, and child-centred residential care."
+  />
   <style>
     :root {
       --navy: #173a57;
       --navy-dark: #0f2a42;
       --gold: #d7a23d;
-      --bg: #f9f9fb;
-      --text: #1f2937;
-      --muted: #6b7280;
+      --bg: #f4f4f4;
       --card: #ffffff;
-      --soft: #f3f4f6;
+      --soft: #f6f8fa;
+      --soft-2: #eef2f5;
+      --text: #1f2937;
+      --muted: #667085;
       --border: #e5e7eb;
-      --radius: 12px;
-      --radius-lg: 18px;
-      --max: 1100px;
-      --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 14px 34px rgba(23, 58, 87, 0.1);
+      --shadow-sm: 0 10px 30px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 20px 70px rgba(23, 58, 87, 0.12);
+      --radius: 18px;
+      --radius-lg: 32px;
+      --max: 1180px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: var(--text);
       background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
-
-    a { color: inherit; text-decoration: none; }
 
     img {
       max-width: 100%;
@@ -43,91 +49,64 @@
       height: auto;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     .container {
       width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
     }
 
-    .section {
-      padding: 80px 0;
-    }
-
-    .section-soft {
-      background: var(--soft);
-    }
-
-    .section-white {
-      background: var(--card);
-    }
-
-    .section-label {
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-
-    .section-heading {
-      margin: 0 0 16px 0;
-      color: var(--navy);
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 700;
-      line-height: 1.25;
-    }
-
-    .section-description {
-      margin: 0 0 32px 0;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 680px;
-      line-height: 1.65;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 20px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: center;
-      min-height: 44px;
-    }
-
-    .btn-primary {
+    .skip-link {
+      position: absolute;
+      top: -44px;
+      left: 12px;
       background: var(--navy);
       color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      z-index: 200;
     }
 
-    .btn-primary:hover {
-      background: var(--navy-dark);
-      transform: translateY(-1px);
+    .skip-link:focus {
+      top: 12px;
     }
 
-    .btn-secondary {
-      background: var(--soft);
-      color: var(--navy);
-      border: 1px solid var(--border);
+    .topbar {
+      background: var(--navy);
+      color: white;
+      font-size: 13px;
     }
 
-    .btn-secondary:hover {
-      background: #e8ebef;
-      transform: translateY(-1px);
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      flex-wrap: wrap;
     }
 
-    /* Header */
+    .topbar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .topbar a {
+      color: rgba(255, 255, 255, 0.92);
+      word-break: break-word;
+    }
+
     .header {
       position: sticky;
       top: 0;
-      z-index: 40;
-      background: rgba(255, 255, 255, 0.95);
-      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       backdrop-filter: blur(10px);
     }
 
@@ -135,8 +114,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 0;
       gap: 24px;
+      padding: 16px 0;
       flex-wrap: wrap;
     }
 
@@ -148,545 +127,647 @@
     }
 
     .logo img {
-      height: 48px;
+      height: 58px;
       width: auto;
       flex-shrink: 0;
     }
 
+    .logo-text {
+      min-width: 0;
+    }
+
     .logo-text h1 {
       margin: 0;
+      font-size: 26px;
+      line-height: 1.05;
       color: var(--navy);
-      font-size: 18px;
       font-weight: 700;
-      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
     .logo-text p {
-      margin: 2px 0 0 0;
-      color: var(--gold);
+      margin: 4px 0 0;
       font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      color: var(--gold);
       text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-weight: 700;
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
     nav a {
-      color: var(--text);
       font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
+      font-weight: 600;
+      color: #334155;
+      white-space: nowrap;
     }
 
     nav a:hover {
-      color: var(--gold);
+      color: var(--navy);
     }
 
-    /* Hero */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      min-height: 48px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--navy);
+      border: 1px solid rgba(23, 58, 87, 0.16);
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
     .hero {
-      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-      padding: 68px 0;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f6f1 48%, var(--soft-2) 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 160px;
+      height: 160px;
+      left: -40px;
+      top: 80px;
+      background: rgba(215, 162, 61, 0.14);
+      filter: blur(36px);
+    }
+
+    .hero::after {
+      width: 220px;
+      height: 220px;
+      right: -40px;
+      bottom: 50px;
+      background: rgba(23, 58, 87, 0.1);
+      filter: blur(42px);
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 40px;
       align-items: center;
     }
 
-    .hero-content {
-      text-align: left;
+    .hero-copy {
+      max-width: 700px;
     }
 
     .hero-label {
-      display: inline-block;
-      background: rgba(215, 162, 61, 0.1);
-      border: 1px solid rgba(215, 162, 61, 0.3);
-      color: var(--navy);
+      display: inline-flex;
+      align-items: center;
       padding: 8px 16px;
+      margin-bottom: 18px;
       border-radius: 999px;
+      border: 1px solid rgba(215, 162, 61, 0.35);
+      background: rgba(215, 162, 61, 0.1);
+      color: var(--navy);
       font-size: 12px;
       font-weight: 700;
-      margin-bottom: 16px;
-      text-transform: uppercase;
       letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .hero h1 {
-      margin: 0 0 16px 0;
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.06;
       color: var(--navy);
-      font-size: clamp(30px, 5vw, 44px);
       font-weight: 700;
-      line-height: 1.15;
+      letter-spacing: -0.04em;
     }
 
     .hero p {
-      margin: 0 0 24px 0;
+      margin: 22px 0 0;
+      max-width: 640px;
+      font-size: 18px;
+      line-height: 1.8;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.65;
-      max-width: 620px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
+      margin-top: 28px;
     }
 
-    .hero-image {
+    .hero-panel-wrap {
       position: relative;
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      padding: 12px;
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
     }
 
-    .hero-image img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .hero-badge {
+    .hero-panel-glow-left,
+    .hero-panel-glow-right {
       position: absolute;
-      bottom: 24px;
-      left: 24px;
-      right: 24px;
-      max-width: 240px;
-      background: rgba(255, 255, 255, 0.96);
-      padding: 16px;
-      border-radius: 10px;
-      box-shadow: var(--shadow-sm);
+      border-radius: 999px;
+      pointer-events: none;
     }
 
-    .hero-badge strong {
-      display: block;
+    .hero-panel-glow-left {
+      width: 96px;
+      height: 96px;
+      left: -22px;
+      top: 34px;
+      background: rgba(215, 162, 61, 0.18);
+      filter: blur(26px);
+    }
+
+    .hero-panel-glow-right {
+      width: 130px;
+      height: 130px;
+      right: -18px;
+      bottom: 30px;
+      background: rgba(23, 58, 87, 0.12);
+      filter: blur(34px);
+    }
+
+    .hero-panel {
+      position: relative;
+      background: white;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-panel-logo {
+      height: 132px;
+      width: auto;
+      margin: 0 auto 26px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--soft);
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 18px;
+      background: rgba(215, 162, 61, 0.15);
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      margin: 0;
       color: var(--navy);
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .feature-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .section-eyebrow {
+      margin: 0 0 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
       font-size: 12px;
       font-weight: 700;
-      margin-bottom: 4px;
     }
 
-    .hero-badge span {
+    .section-title {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .section-text {
+      margin: 16px 0 0;
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.45;
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 760px;
     }
 
-    /* About */
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 36px;
       align-items: center;
-      margin-top: 40px;
     }
 
-    .about-text {
+    .about-card {
       background: var(--navy);
       color: white;
-      padding: 40px;
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-    }
-
-    .about-text .section-heading {
-      color: white;
-      font-size: 28px;
-      margin-top: 0;
-    }
-
-    .about-text p {
-      color: rgba(255, 255, 255, 0.9);
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .about-image img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      border-radius: var(--radius-lg);
+      padding: 38px;
       box-shadow: var(--shadow-sm);
+    }
+
+    .about-card .section-eyebrow {
+      color: #e9c46f;
+    }
+
+    .about-card .section-title {
+      color: white;
+      font-size: clamp(28px, 4vw, 42px);
+    }
+
+    .about-card p {
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 16px;
+      line-height: 1.8;
     }
 
     .values-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 40px;
+      gap: 18px;
     }
 
-    .value-item {
+    .value-card {
       background: white;
-      padding: 28px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 28px;
+      padding: 24px;
       box-shadow: var(--shadow-sm);
     }
 
-    .value-item-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
+    .value-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(215, 162, 61, 0.14);
       color: var(--navy);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 14px;
     }
 
-    .value-item h3 {
-      margin: 0 0 8px 0;
-      color: var(--navy);
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .value-item p {
+    .value-card h3 {
       margin: 0;
+      color: var(--navy);
+      font-size: 19px;
+      line-height: 1.3;
+    }
+
+    .value-card p {
+      margin: 12px 0 0;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.55;
+      line-height: 1.75;
     }
 
-    /* Homes */
+    .homes-section {
+      background: white;
+    }
+
     .homes-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 32px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
       margin-top: 40px;
     }
 
-    .homes-image {
+    .homes-image-card {
       position: relative;
-      height: 380px;
-      border-radius: var(--radius-lg);
       overflow: hidden;
-      background: var(--soft);
-      box-shadow: var(--shadow-md);
+      border: 1px solid #eef2f7;
+      border-radius: var(--radius-lg);
+      background: #f8fafb;
+      min-height: 420px;
+      box-shadow: var(--shadow-sm);
     }
 
-    .homes-image img {
+    .homes-image-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transform: scale(1.08);
       filter: blur(8px);
-      opacity: 0.65;
-      transform: scale(1.05);
+      opacity: 0.7;
     }
 
-    .homes-overlay {
+    .homes-image-overlay {
       position: absolute;
       inset: 0;
+      background: rgba(23, 58, 87, 0.36);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(23, 58, 87, 0.42);
-      padding: 20px;
-    }
-
-    .homes-badge {
-      background: rgba(255, 255, 255, 0.96);
       padding: 28px;
-      border-radius: var(--radius-lg);
+    }
+
+    .homes-coming-card {
+      max-width: 520px;
       text-align: center;
-      max-width: 320px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .homes-badge-label {
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
-    }
-
-    .homes-badge h3 {
-      margin: 0 0 12px 0;
-      color: var(--navy);
-      font-size: 28px;
-      font-weight: 700;
-      line-height: 1.1;
-    }
-
-    .homes-badge p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .homes-content {
-      background: white;
-      padding: 32px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.34);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
+      padding: 34px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-md);
     }
 
-    .homes-content h3 {
-      margin: 0 0 12px 0;
+    .homes-coming-card .section-eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .homes-coming-card h3 {
+      margin: 0;
       color: var(--navy);
-      font-size: 20px;
-      font-weight: 600;
+      font-size: clamp(34px, 5vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
     }
 
-    .homes-content p {
-      margin: 0 0 16px 0;
+    .homes-coming-card p {
+      margin: 16px 0 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.8;
     }
 
-    .homes-content ul {
-      margin: 16px 0 0 0;
-      padding: 0;
-      list-style: none;
+    .homes-info-card {
+      background: var(--soft);
+      border-radius: var(--radius-lg);
+      padding: 34px;
     }
 
-    .homes-content ul li {
+    .homes-info-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    .homes-info-card ul {
+      margin: 20px 0 0;
+      padding-left: 18px;
       color: var(--muted);
-      font-size: 14px;
-      padding: 6px 0 6px 20px;
-      position: relative;
     }
 
-    .homes-content ul li::before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-weight: 700;
+    .homes-info-card li {
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.7;
     }
 
-    /* Referrals */
     .referrals-section {
       background: var(--navy);
       color: white;
     }
 
-    .referrals-section .section-heading {
+    .referrals-section .section-title,
+    .referrals-section .section-text {
       color: white;
     }
 
-    .referrals-section .section-description {
-      color: rgba(255, 255, 255, 0.84);
+    .referrals-section .section-text {
+      color: rgba(255, 255, 255, 0.85);
     }
 
     .referrals-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-      margin-top: 40px;
-    }
-
-    .referrals-copy p {
-      margin: 0 0 16px 0;
-      color: rgba(255, 255, 255, 0.86);
+      grid-template-columns: 1fr 0.82fr;
+      gap: 36px;
+      align-items: center;
     }
 
     .referral-card {
       background: white;
       color: var(--text);
-      padding: 32px;
       border-radius: var(--radius-lg);
+      padding: 28px;
       box-shadow: var(--shadow-md);
     }
 
     .referral-card h3 {
-      margin: 0 0 12px 0;
-      color: var(--navy);
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .referral-card p {
-      margin: 0 0 20px 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .referral-items {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .referral-item {
-      background: var(--soft);
-      padding: 12px 16px;
-      border-radius: 10px;
-      border-left: 3px solid var(--gold);
-    }
-
-    .referral-item strong {
-      display: block;
-      color: var(--navy);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 4px;
-    }
-
-    .referral-item a,
-    .referral-item p {
       margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      word-break: break-word;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.2;
     }
 
-    /* Careers */
+    .referral-form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .referral-form input,
+    .referral-form textarea {
+      width: 100%;
+      border: 1px solid #dbe2ea;
+      border-radius: 18px;
+      padding: 14px 16px;
+      font: inherit;
+      color: var(--text);
+      background: white;
+      outline: none;
+    }
+
+    .referral-form input:focus,
+    .referral-form textarea:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(23, 58, 87, 0.08);
+    }
+
+    .referral-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
     .careers-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      margin-top: 40px;
+    }
+
+    .career-card,
+    .career-info-card {
+      border-radius: var(--radius-lg);
+      padding: 32px;
     }
 
     .career-card {
       background: white;
-      padding: 32px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(0, 0, 0, 0.05);
       box-shadow: var(--shadow-sm);
     }
 
-    .career-card.highlight {
+    .career-info-card {
       background: var(--soft);
     }
 
-    .career-card h3 {
-      margin: 0 0 12px 0;
+    .career-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: rgba(215, 162, 61, 0.15);
       color: var(--navy);
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .career-card h3,
+    .career-info-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .career-card p,
+    .career-info-card li {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
     }
 
     .career-card p {
-      margin: 0 0 12px 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      margin: 16px 0 0;
+      max-width: 640px;
     }
 
-    .career-card p:last-of-type {
-      margin-bottom: 20px;
-    }
-
-    .career-card ul {
-      margin: 12px 0 0 0;
+    .career-info-card ul {
+      margin: 18px 0 0;
       padding-left: 18px;
     }
 
-    .career-card li {
-      margin-bottom: 8px;
-      color: var(--muted);
-      font-size: 14px;
+    .career-info-card li {
+      margin-bottom: 10px;
     }
 
-    /* Footer */
-    footer {
-      background: var(--card);
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
+    .footer {
+      background: white;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-
-    .footer-brand {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 28px;
+      padding: 44px 0;
     }
 
     .footer-brand img {
-      height: 48px;
+      height: 58px;
       width: auto;
-      flex-shrink: 0;
     }
 
-    .footer-brand-text h4 {
-      margin: 0 0 4px 0;
-      color: var(--navy);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .footer-brand-text p {
-      margin: 0;
+    .footer-brand p {
+      max-width: 720px;
+      margin: 16px 0 0;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.8;
     }
 
     .footer-meta {
       display: grid;
-      gap: 12px;
-      text-align: right;
-    }
-
-    .footer-meta div {
-      font-size: 13px;
-      word-break: break-word;
+      gap: 10px;
+      align-content: start;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .footer-meta strong {
       color: var(--navy);
-      font-weight: 600;
     }
 
-    .footer-meta a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
       .hero-grid,
       .about-grid,
       .homes-grid,
       .referrals-grid,
       .careers-grid,
-      .values-grid,
       .footer-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero-content {
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
         text-align: center;
+        max-width: none;
+      }
+
+      .hero p {
+        max-width: none;
       }
 
       .hero-actions {
         justify-content: center;
       }
 
-      .section,
-      .hero {
-        padding: 64px 0;
-      }
-
-      .footer-meta {
-        text-align: left;
+      .hero-panel-wrap {
+        max-width: 520px;
+        width: 100%;
+        margin: 0 auto;
       }
     }
 
@@ -695,339 +776,474 @@
         width: min(var(--max), calc(100% - 28px));
       }
 
+      .topbar {
+        font-size: 12px;
+      }
+
+      .topbar .container {
+        justify-content: center;
+        gap: 10px;
+        padding: 9px 0;
+      }
+
+      .topbar-item:last-child {
+        display: none;
+      }
+
       .header .container {
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px 0;
+      }
+
+      .logo {
+        justify-content: center;
+      }
+
+      .logo img {
+        height: 42px;
+      }
+
+      .logo-text h1 {
+        font-size: 18px;
+      }
+
+      .logo-text p {
+        font-size: 10px;
+        letter-spacing: 0.18em;
       }
 
       nav {
         width: 100%;
-        gap: 12px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 10px;
+        padding-bottom: 2px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      nav::-webkit-scrollbar {
+        display: none;
       }
 
       nav a {
+        flex: 0 0 auto;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 8px 12px;
         font-size: 13px;
       }
 
-      .hero-image img {
-        height: 260px;
+      .section {
+        padding: 64px 0;
       }
 
-      .hero-badge {
-        left: 16px;
-        right: 16px;
-        bottom: 16px;
-        max-width: none;
+      .hero {
+        padding: 52px 0 64px;
       }
 
-      .about-image img {
-        height: 300px;
+      .hero h2 {
+        font-size: clamp(30px, 8vw, 44px);
       }
 
-      .homes-image {
-        height: 320px;
+      .hero p {
+        font-size: 16px;
+        margin-top: 18px;
+      }
+
+      .hero-panel {
+        padding: 24px;
+      }
+
+      .hero-panel-logo {
+        height: 90px;
+        margin-bottom: 18px;
+      }
+
+      .feature-card {
+        border-radius: 20px;
+        padding: 16px;
+      }
+
+      .homes-image-card {
+        min-height: 340px;
+      }
+
+      .homes-coming-card h3 {
+        font-size: 38px;
+      }
+
+      .referral-card,
+      .career-card,
+      .career-info-card,
+      .homes-info-card,
+      .about-card {
+        padding: 24px;
+      }
+
+      .footer-grid {
+        padding: 36px 0;
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 480px) {
+      .topbar {
+        font-size: 11px;
+      }
+
+      .topbar .container {
+        padding: 7px 0;
+      }
+
       .header .container {
-        flex-direction: column;
-        gap: 16px;
+        gap: 8px;
+        padding: 8px 0;
+      }
+
+      .logo img {
+        height: 36px;
+      }
+
+      .logo-text h1 {
+        font-size: 16px;
+      }
+
+      .logo-text p {
+        font-size: 9px;
       }
 
       nav {
-        flex-direction: column;
-        align-items: stretch;
+        gap: 8px;
       }
 
       nav a {
-        width: 100%;
+        font-size: 12px;
+        padding: 7px 10px;
       }
 
-      nav .btn {
-        width: 100%;
+      nav a.btn {
+        display: none;
+      }
+
+      .hero {
+        padding: 42px 0 56px;
+      }
+
+      .hero-label {
+        padding: 7px 12px;
+        font-size: 11px;
       }
 
       .hero-actions {
         flex-direction: column;
       }
 
-      .hero-actions .btn {
-        width: 100%;
-      }
-
       .btn {
         width: 100%;
       }
 
-      .hero {
-        padding: 56px 0;
+      .hero-panel-wrap {
+        max-width: 100%;
       }
 
-      .hero h1 {
-        font-size: 30px;
+      .hero-panel-glow-left,
+      .hero-panel-glow-right,
+      .hero::before,
+      .hero::after {
+        display: none;
       }
 
-      .hero p {
-        font-size: 15px;
+      .hero-panel {
+        padding: 18px;
+        border-radius: 24px;
       }
 
-      .hero-image img {
-        height: 220px;
+      .hero-panel-logo {
+        height: 72px;
+        margin-bottom: 14px;
       }
 
-      .hero-badge {
-        position: static;
-        max-width: none;
-        margin-top: 12px;
+      .feature-grid {
+        gap: 10px;
       }
 
-      .hero-image {
-        padding-bottom: 12px;
+      .feature-card {
+        padding: 14px;
+        border-radius: 18px;
       }
 
-      .about-text,
-      .homes-content,
-      .referral-card,
-      .career-card,
-      .homes-badge {
+      .feature-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+
+      .feature-card h3 {
+        font-size: 14px;
+      }
+
+      .feature-card p {
+        font-size: 12px;
+        line-height: 1.55;
+        margin-top: 8px;
+      }
+
+      .homes-image-card {
+        min-height: 300px;
+      }
+
+      .homes-coming-card {
         padding: 24px;
       }
 
-      .section {
-        padding: 56px 0;
-      }
-
-      .logo-text h1 {
-        font-size: 17px;
-      }
-
-      .logo-text p {
-        font-size: 10px;
-      }
-
-      .footer-brand {
-        flex-direction: column;
-      }
-
-      .footer-meta {
-        text-align: left;
+      .homes-coming-card h3 {
+        font-size: 32px;
       }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-item">
+        <span>📧</span>
+        <a href="mailto:info@brighthavenservices.co.uk">info@brighthavenservices.co.uk</a>
+      </div>
+      <div class="topbar-item">
+        <span>📍</span>
+        <span>United Kingdom</span>
+      </div>
+    </div>
+  </div>
+
   <header class="header">
     <div class="container">
-      <a href="#top" class="logo">
-        <img src="logo.png" alt="BrightHaven logo" />
+      <a href="#top" class="logo" aria-label="BrightHaven home">
+        <img src="logo.png" alt="BrightHaven Children's Services logo" />
         <div class="logo-text">
           <h1>BrightHaven</h1>
           <p>Children's Services</p>
         </div>
       </a>
 
-      <nav>
+      <nav aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#homes">Our Homes</a>
         <a href="#referrals">Referrals</a>
         <a href="#careers">Careers</a>
-        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <a href="#contact" class="btn btn-primary">Contact Us</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <div class="hero-label">Supporting vulnerable children</div>
-          <h1>Safe, nurturing residential care</h1>
-          <p>
-            BrightHaven Children's Services is dedicated to providing stable,
-            compassionate residential care where children feel secure, supported,
-            and able to thrive.
-          </p>
-          <div class="hero-actions">
-            <a href="referral.html" class="btn btn-primary">Make a Referral</a>
-            <a href="#about" class="btn btn-secondary">Learn More</a>
+  <main id="main">
+    <section class="hero section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-label">Compassionate care. Safe homes. Brighter futures.</div>
+            <h2>Supporting children with care, stability, and opportunity.</h2>
+            <p>
+              BrightHaven Children's Services is being developed to provide stable,
+              compassionate residential care where children can feel secure, supported,
+              and able to make positive progress.
+            </p>
+            <div class="hero-actions">
+              <a href="#referrals" class="btn btn-primary">Make a Referral</a>
+              <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
           </div>
-        </div>
 
-        <div class="hero-image">
-          <img src="hero.png" alt="Children in care" />
-          <div class="hero-badge">
-            <strong>Child-centred residential care</strong>
-            <span>Thoughtful, nurturing support built around safety and stability.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="hero-panel-wrap">
+            <div class="hero-panel-glow-left"></div>
+            <div class="hero-panel-glow-right"></div>
 
-  <section id="about" class="section">
-    <div class="container">
-      <div class="section-label">About Us</div>
-      <h2 class="section-heading">Who We Are</h2>
+            <div class="hero-panel">
+              <img src="logo.png" alt="BrightHaven logo" class="hero-panel-logo" />
 
-      <div class="about-grid">
-        <div class="about-text">
-          <h3 class="section-heading">A safe, nurturing environment</h3>
-          <p>
-            BrightHaven is shaped around the idea that good care combines warmth
-            with structure. We create calm, well-led environments where children
-            experience consistency, positive relationships, and support tailored
-            to their individual needs.
-          </p>
-        </div>
+              <div class="feature-grid">
+                <article class="feature-card">
+                  <div class="feature-icon"></div>
+                  <h3>Safe, supportive residential homes</h3>
+                  <p>Warm, well-led homes designed to help children feel secure, heard, and supported every day.</p>
+                </article>
 
-        <div class="about-image">
-          <img src="about.png" alt="Children in a home setting" />
-        </div>
-      </div>
+                <article class="feature-card">
+                  <div class="feature-icon"></div>
+                  <h3>Consistent routines and nurturing support</h3>
+                  <p>Stable day-to-day care that helps children feel secure, understood, and able to make progress.</p>
+                </article>
 
-      <div class="values-grid">
-        <div class="value-item">
-          <div class="value-item-icon">✓</div>
-          <h3>Safe &amp; Dependable</h3>
-          <p>Safeguarding, stability, and consistency are at the heart of everything we do.</p>
-        </div>
-        <div class="value-item">
-          <div class="value-item-icon">♥</div>
-          <h3>Child-Centred</h3>
-          <p>We recognise each child's individuality and provide support that reflects their voice and strengths.</p>
-        </div>
-        <div class="value-item">
-          <div class="value-item-icon">↗</div>
-          <h3>Positive Outcomes</h3>
-          <p>We help children build confidence, resilience, and hope for their future.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="homes" class="section section-white">
-    <div class="container">
-      <div class="section-label">Our Provision</div>
-      <h2 class="section-heading">Our Residential Homes</h2>
-      <p class="section-description">
-        BrightHaven is preparing its residential care provision. Details about our
-        first home will be published here soon.
-      </p>
-
-      <div class="homes-grid">
-        <div class="homes-image">
-          <img src="home-blur-source.png" alt="A welcoming home environment" />
-          <div class="homes-overlay">
-            <div class="homes-badge">
-              <div class="homes-badge-label">Home 1</div>
-              <h3>Coming Soon</h3>
-              <p>Registration in progress. Full details coming soon.</p>
+                <article class="feature-card">
+                  <div class="feature-icon"></div>
+                  <h3>Clear referral pathways</h3>
+                  <p>Straightforward referral and enquiry routes for local authorities, professionals, and families.</p>
+                </article>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="homes-content">
-          <h3>What We Offer</h3>
-          <p>Our homes will provide:</p>
-          <ul>
-            <li>Stable, family-style residential care</li>
-            <li>Experienced, trained staff</li>
-            <li>Child-centred support plans</li>
-            <li>Secure, welcoming environments</li>
-            <li>Educational and therapeutic support</li>
-          </ul>
+    <section id="about" class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-card">
+            <p class="section-eyebrow">About BrightHaven</p>
+            <h2 class="section-title">A safe, nurturing environment built around each child's needs.</h2>
+            <p>
+              BrightHaven is being shaped around the idea that good care combines warmth with structure.
+              Our aim is to create calm, well-led environments where children experience consistency,
+              positive relationships, and support that reflects their individual needs.
+            </p>
+          </div>
+
+          <div class="values-grid">
+            <article class="value-card">
+              <div class="value-icon">✓</div>
+              <h3>Safe and dependable</h3>
+              <p>Safeguarding, stability, and consistency are at the heart of everything we do.</p>
+            </article>
+
+            <article class="value-card">
+              <div class="value-icon">♥</div>
+              <h3>Child-centred support</h3>
+              <p>We recognise the individuality of every child and aim to provide support that reflects their voice, needs, and strengths.</p>
+            </article>
+
+            <article class="value-card">
+              <div class="value-icon">↗</div>
+              <h3>Growth and positive outcomes</h3>
+              <p>We are committed to helping children build confidence, resilience, and a stronger sense of hope for the future.</p>
+            </article>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="referrals" class="section referrals-section">
-    <div class="container">
-      <div class="section-label">Get Started</div>
-      <h2 class="section-heading">Referral Process</h2>
-      <p class="section-description">
-        We provide a clear, responsive referral process for professionals and local authorities.
-      </p>
+    <section id="homes" class="section homes-section">
+      <div class="container">
+        <p class="section-eyebrow">Our homes</p>
+        <h2 class="section-title">Our residential care provision is coming soon.</h2>
+        <p class="section-text">
+          BrightHaven is currently preparing its residential care provision.
+          Full details of our first home will be published here once registration is complete.
+        </p>
 
-      <div class="referrals-grid">
-        <div class="referrals-copy">
-          <p>
-            Making a referral is straightforward. We welcome enquiries from professionals,
-            local authorities, and carers.
-          </p>
-          <p>
-            Our team will work with you to understand the child's needs and discuss
-            whether BrightHaven can provide the right support.
-          </p>
-        </div>
-
-        <div class="referral-card">
-          <h3>Contact Us</h3>
-          <p>To discuss a potential referral:</p>
-          <div class="referral-items">
-            <div class="referral-item">
-              <strong>Email</strong>
-              <a href="mailto:info@brighthavenservices.co.uk">info@brighthavenservices.co.uk</a>
-            </div>
-            <div class="referral-item">
-              <strong>Status</strong>
-              <p>Residential provision in development</p>
-            </div>
-            <div class="referral-item">
-              <strong>Response Time</strong>
-              <p>2–3 business days</p>
+        <div class="homes-grid">
+          <div class="homes-image-card">
+            <img src="home-blur-source.png" alt="A calm, welcoming home environment" loading="lazy" />
+            <div class="homes-image-overlay">
+              <div class="homes-coming-card">
+                <div class="section-eyebrow">Home 1</div>
+                <h3>Coming soon</h3>
+                <p>
+                  Our first residential home is currently in development.
+                  Full information will appear here once registration is complete and the home is ready to be shared.
+                </p>
+              </div>
             </div>
           </div>
-          <a href="referral.html" class="btn btn-primary" style="width: 100%;">Referral Form</a>
+
+          <div class="homes-info-card">
+            <h3>What will be added</h3>
+            <ul>
+              <li>Home overview and care model</li>
+              <li>Registration status and availability</li>
+              <li>Location summary and key features</li>
+              <li>Interior and exterior imagery</li>
+              <li>Referral contact details</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="careers" class="section section-soft">
-    <div class="container">
-      <div class="section-label">Join Our Team</div>
-      <h2 class="section-heading">Careers at BrightHaven</h2>
-      <p class="section-description">
-        As we grow, we're building a thoughtful, dedicated team committed to excellence in child care.
-      </p>
+    <section id="referrals" class="section referrals-section">
+      <div class="container">
+        <div class="referrals-grid">
+          <div>
+            <p class="section-eyebrow">Referrals</p>
+            <h2 class="section-title">A clear and responsive referral process for professionals and local authorities.</h2>
+            <p class="section-text">
+              We know that referral decisions require clarity and confidence.
+              Our approach is designed to give professionals a straightforward route for enquiry,
+              clear communication, and a careful focus on suitability and next steps.
+            </p>
+          </div>
 
-      <div class="careers-grid">
-        <div class="career-card">
-          <h3>Future Opportunities</h3>
-          <p>We're not currently advertising vacancies, but we welcome expressions of interest from qualified professionals.</p>
-          <p>We seek staff who value safeguarding, consistency, relationship-based care, and continuous professional development.</p>
-          <a href="contact.html" class="btn btn-primary" style="width: 100%;">Register Interest</a>
-        </div>
+          <div class="referral-card">
+            <h3>Send a referral enquiry</h3>
 
-        <div class="career-card highlight">
-          <h3>What We Value</h3>
-          <p><strong>Our Team:</strong></p>
-          <ul>
-            <li>Experienced in child care</li>
-            <li>Committed to safeguarding</li>
-            <li>Passionate about supporting children</li>
-            <li>Team-focused approach</li>
-          </ul>
+            <form
+              class="referral-form"
+              action="https://formsubmit.co/info@brighthavenservices.co.uk"
+              method="POST"
+            >
+              <input type="text" name="name" placeholder="Your name" required />
+              <input type="text" name="organisation" placeholder="Organisation" required />
+              <input type="email" name="email" placeholder="Email address" required />
+              <textarea name="message" placeholder="Tell us about your enquiry" required></textarea>
+
+              <input type="hidden" name="_subject" value="BrightHaven referral enquiry" />
+              <input type="hidden" name="_captcha" value="false" />
+
+              <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
+    <section id="careers" class="section">
+      <div class="container">
+        <div class="careers-grid">
+          <div class="career-card">
+            <div class="career-icon">✦</div>
+            <h3>Future opportunities</h3>
+            <p>
+              As BrightHaven develops, we hope to build a thoughtful and dependable team.
+              Future opportunities will be suited to people who value safeguarding,
+              consistency, and relationship-based care.
+            </p>
+            <a href="#contact" class="btn btn-primary" style="margin-top: 20px;">View opportunities</a>
+          </div>
+
+          <div class="career-info-card">
+            <h3>What we value</h3>
+            <ul>
+              <li>Safeguarding and professional standards</li>
+              <li>Relationship-based care and emotional warmth</li>
+              <li>Consistency, teamwork, and accountability</li>
+              <li>Reflective practice and ongoing development</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="logo.png" alt="BrightHaven logo" />
-          <div class="footer-brand-text">
-            <h4>BrightHaven Children's Services</h4>
-            <p>Providing safe, nurturing residential care with stability, warmth, and high standards.</p>
-          </div>
+          <img src="logo.png" alt="BrightHaven logo" loading="lazy" />
+          <p>
+            BrightHaven Children's Services is focused on building thoughtful residential
+            care provision with stability, warmth, and high standards at its core.
+          </p>
         </div>
 
         <div class="footer-meta">
-          <div><strong>Email:</strong> <a href="mailto:info@brighthavenservices.co.uk">info@brighthavenservices.co.uk</a></div>
-          <div><strong>Website:</strong> brighthavenservices.co.uk</div>
+          <div><strong>Email:</strong> info@brighthavenservices.co.uk</div>
           <div><strong>Location:</strong> United Kingdom</div>
         </div>
       </div>
