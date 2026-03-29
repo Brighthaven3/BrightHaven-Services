@@ -48,7 +48,7 @@
       background-color: rgba(255, 255, 255, 0.95);
     }
 
-    .header-content {
+    .header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -601,13 +601,14 @@
     }
 
     @media (max-width: 480px) {
-      .header-content {
+      .header .container {
         flex-direction: column;
         gap: 16px;
       }
 
       nav {
         width: 100%;
+        flex-direction: column;
       }
 
       .hero-actions {
@@ -624,22 +625,20 @@
   <!-- Header -->
   <header class="header">
     <div class="container">
-      <div class="header-content">
-        <a href="#" class="logo">
-          <img src="logo.png" alt="BrightHaven logo" />
-          <div class="logo-text">
-            <h1>BrightHaven</h1>
-            <p>Children's Services</p>
-          </div>
-        </a>
-        <nav>
-          <a href="#about">About</a>
-          <a href="#homes">Our Homes</a>
-          <a href="#referrals">Referrals</a>
-          <a href="#careers">Careers</a>
-          <a href="contact.html" class="btn btn-primary">Contact Us</a>
-        </nav>
-      </div>
+      <a href="#" class="logo">
+        <img src="logo.png" alt="BrightHaven logo" />
+        <div class="logo-text">
+          <h1>BrightHaven</h1>
+          <p>Children's Services</p>
+        </div>
+      </a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#homes">Our Homes</a>
+        <a href="#referrals">Referrals</a>
+        <a href="#careers">Careers</a>
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+      </nav>
     </div>
   </header>
 
