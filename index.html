@@ -503,9 +503,10 @@
       font-weight: 600;
     }
 
-    .referrals-section {
+    .referrals-section.section {
       background: var(--navy);
       color: white;
+      padding: 64px 0;
     }
 
     .referrals-section .section-heading {
@@ -518,10 +519,18 @@
 
     .referrals-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+      gap: 32px;
       align-items: start;
-      margin-top: 40px;
+      margin-top: 0;
+    }
+
+    .referrals-copy {
+      align-self: start;
+    }
+
+    .referrals-copy .section-description {
+      margin-bottom: 24px;
     }
 
     .referrals-copy p {
@@ -789,6 +798,19 @@
       .hero-actions {
         justify-content: flex-start;
       }
+
+      .referrals-section.section {
+        padding: 48px 0;
+      }
+
+      .referrals-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .referral-card {
+        padding: 24px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -987,14 +1009,14 @@
 
     <section id="referrals" class="section referrals-section">
       <div class="container">
-        <div class="section-label">Get Started</div>
-        <h2 class="section-heading">Referral Process</h2>
-        <p class="section-description">
-          We provide a clear, responsive referral process for professionals and local authorities.
-        </p>
-
         <div class="referrals-grid">
           <div class="referrals-copy">
+            <div class="section-label">Get Started</div>
+            <h2 class="section-heading">Referral Process</h2>
+            <p class="section-description">
+              We provide a clear, responsive referral process for professionals and local authorities.
+            </p>
+
             <p>Making a referral is straightforward. We welcome enquiries from professionals, local authorities, and carers.</p>
             <p>Our team will work with you to understand the child's needs and discuss whether BrightHaven can provide the right support.</p>
           </div>
